@@ -23,7 +23,7 @@ const Home: NextPage = () => {
     setCards((current) =>
       current.filter((card) => {
         return card.id !== oldCard.id;
-      })
+      }),
     );
     setResult((current) => ({ ...current, [swipe]: current[swipe] + 1 }));
   };
@@ -34,7 +34,7 @@ const Home: NextPage = () => {
       setHistory((current) =>
         current.filter((card) => {
           return card.id !== newCard.id;
-        })
+        }),
       );
       setResult((current) => ({ ...current, [swipe]: current[swipe] - 1 }));
       setCards((current) => [...current, newCard]);
@@ -84,3 +84,27 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+/*
+ <footer className="absolute bottom-4 flex items-center space-x-4">
+        <div className="flex flex-col items-center space-y-2">
+          <button
+            disabled={history.length === 0}
+            className="w-14 h-14 rounded-full text-black bg-white inline-flex justify-center items-center disabled:cursor-not-allowed"
+            onClick={undoSwipe}
+            data-testid="undo-btn"
+            aria-label="Undo Swipe"
+          >
+            <RotateIcon strokeWidth={3} />
+          </button>
+          <span className="text-xs text-white">Undo</span>
+        </div>
+        <Counter label="Likes" count={result.like} testid="like-count" />
+        <Counter label="Nopes" count={result.nope} testid="nope-count" />
+        <Counter
+          label="Superlike"
+          count={result.superlike}
+          testid="superlike-count"
+        />
+      </footer>
+      */
