@@ -8,7 +8,7 @@ import CARDS from "@data/cards";
 import Card from "@components/Card";
 import Head from "next/head";
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ randArray }) => {
   const [cards, setCards] = useState(CARDS);
   const [result, setResult] = useState<ResultType>({
     like: 0,
@@ -40,6 +40,9 @@ const Home: NextPage = () => {
       setCards((current) => [...current, newCard]);
     }
   };
+
+  console.log(randArray);
+
   return (
     <div className="relative flex flex-col justify-center items-center w-full h-screen gradient">
       <Head>
@@ -48,37 +51,17 @@ const Home: NextPage = () => {
       <AnimatePresence>
         {cards.map((card, index) => (
           <Card
-            key={card.name}
+            key={card.id}
             active={index === activeIndex}
             removeCard={removeCard}
             card={card}
+            rand={randArray[index]}
           />
         ))}
       </AnimatePresence>
       {cards.length === 0 ? (
         <span className="text-white text-xl">End of Stack</span>
       ) : null}
-      <footer className="absolute bottom-4 flex items-center space-x-4">
-        <div className="flex flex-col items-center space-y-2">
-          <button
-            disabled={history.length === 0}
-            className="w-14 h-14 rounded-full text-black bg-white inline-flex justify-center items-center disabled:cursor-not-allowed"
-            onClick={undoSwipe}
-            data-testid="undo-btn"
-            aria-label="Undo Swipe"
-          >
-            <RotateIcon strokeWidth={3} />
-          </button>
-          <span className="text-xs text-white">Undo</span>
-        </div>
-        <Counter label="Likes" count={result.like} testid="like-count" />
-        <Counter label="Nopes" count={result.nope} testid="nope-count" />
-        <Counter
-          label="Superlike"
-          count={result.superlike}
-          testid="superlike-count"
-        />
-      </footer>
     </div>
   );
 };
@@ -108,3 +91,16 @@ export default Home;
         />
       </footer>
       */
+export async function getServerSideProps() {
+  // Générer un nombre aléatoire côté serveur
+  const randArray = Array.from({ length: CARDS.length }, () =>
+    Math.floor(Math.random() * 4),
+  );
+
+  // Passer le nombre aléatoire en tant que propriété
+  return {
+    props: {
+      randArray,
+    },
+  };
+}

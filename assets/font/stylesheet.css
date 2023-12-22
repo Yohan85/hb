@@ -1,0 +1,12 @@
+@font-face {
+    font-family: 'Motek';
+    src: url('Motek.eot');
+    src: url('Motek.eot?#iefix') format('embedded-opentype'),
+        url('Motek.woff2') format('woff2'),
+        url('Motek.woff') format('woff'),
+        url('Motek.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+

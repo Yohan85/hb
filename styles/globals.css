@@ -2,18 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("../assets/font/stylesheet.css");
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    Segoe UI,
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    Fira Sans,
+    Droid Sans,
+    Helvetica Neue,
+    sans-serif;
 }
 
 * {
   box-sizing: border-box;
 }
 
-.gradient{
+.gradient {
   background: linear-gradient(180deg, #7700ff 0%, rgb(68, 0, 255) 100%);
 }
